@@ -1,0 +1,11 @@
+a {
+  color: #fff !important;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.active {
+  background: #fff;
+  a {
+    color: var(--info) !important;
+  }
+}
