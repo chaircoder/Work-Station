@@ -1,5 +1,11 @@
-@import "sass/options/colors";
+// Bootstrap
+@import "./libs/bootstrap/bootstrap";
+@import "./libs/bootstrap/variables";
+// Font Awesome
+@import "./libs/font-awesome.css";
 
+//My style
+@import "sass/options/colors";
 @import "sass/layout/global";
 @import "sass/layout/sidebar";
 @import "sass/layout/header";

@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     pug = require('gulp-pug'),
     livereload = require('gulp-livereload'),
     sourcemaps = require('gulp-sourcemaps'),
+    imagemin = require('gulp-imagemin'),
     minify = require('gulp-minify');
 
 gulp.task('html', function () {
@@ -36,6 +37,19 @@ gulp.task('js', function () {
           .pipe(gulp.dest('dist/js'))
           .pipe(livereload())
 });
+//Images
+gulp.task('image',function(){
+  gulp.src('src/imgs/*.*')
+      .pipe(imagemin([
+        imagemin.gifsicle({interlaced: true}),
+        imagemin.jpegtran({progressive: true}),
+        imagemin.optipng({optimizationLevel: 5}),
+      
+      ]))
+      .pipe(gulp.dest('dist/imgs'))
+      .pipe(livereload())
+
+});
 
 // Watch Tasks
 gulp.task('watch', function () {
@@ -43,5 +57,7 @@ gulp.task('watch', function () {
   livereload.listen();
   gulp.watch("src/html/**/*.pug", gulp.series('html'));
   gulp.watch(["src/css/**/*.css", "src/css/**/*.scss"], gulp.series('css'));
+  gulp.watch("src/imgs/*.*", gulp.series('image'));
   gulp.watch("src/js/*.js", gulp.series('js'));
 });
+// gulp.task('default', ['imagemin','js','css','html','watch']);
